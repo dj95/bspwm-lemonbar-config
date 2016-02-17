@@ -1,3 +1,3 @@
-PANEL_FIFO=/tmp/panel-fifo
+PANEL_FIFO=/dev/shm/panel-fifo
 PANEL_HEIGHT=20
 export PANEL_FIFO PANEL_HEIGHT

@@ -39,43 +39,43 @@ while read -r line ; do
           IFS="°" read t vol wlan eth bat date <<< $sys_arr
 
           # date
-          time="$SEP_LEFT ${date}"
+          time="$SEP_LEFT %{F#5D5D5D}%{F${DATE_FG}} ${date}"
 
           # volume
-          vol="%{B#00000000}%{F#000000}%{T3}◥%{T-}%{B#000000}%{F#BDBDBD}%{F#5D5D5D} V: %{F${VOL_FG}}%{B${VOL_BG}}${vol} %{B#008fb6a1}${SEP_RIGHT} "
+          vol="%{B#00000000}%{F#000000}%{T3}◥%{T-}%{B#000000}%{F#BDBDBD}%{F#5D5D5D}  %{F${VOL_FG}}%{B${VOL_BG}}${vol}%{B#008fb6a1}${SEP_RIGHT} "
           vol="${vol::-1}"
 
           # network
           if [[ ${wlan} != "down " ]] && [[ ${eth} != "down " ]]; then # both up
-              net="$SEP_LEFT%{F#5D5D5D} W: %{F$NET_FG}%{B$NET_BG}$wlan  %{F#5D5D5D}E:%{F$NET_FG} ${eth} %{B#008fb6a1}$SEP_RIGHT"
+              net="$SEP_LEFT%{F#5D5D5D}  %{F$NET_FG}%{B$NET_BG}$wlan  %{F#5D5D5D}%{F$NET_FG} ${eth}%{B#008fb6a1}$SEP_RIGHT"
           
               # battery
-              battery="$SEP_LEFT%{F#5D5D5D} B:%{F$BAT_FG}%{B$BAT_BG} ${bat:4}%{B#008fb6a1}$SEP_RIGHT "
+              battery="$SEP_LEFT%{F#5D5D5D} %{F$BAT_FG}%{B$BAT_BG} ${bat:4}%{B#008fb6a1}$SEP_RIGHT "
               battery="${battery::-1}"
           elif [[ ${wlan} == "down " ]] && [[ ${eth} == "down " ]]; then # both down
               net=" "
           
               # battery
-              battery="$SEP_LEFT%{F#5D5D5D} B:%{F$BAT_FG}%{B$BAT_BG} ${bat:4}%{B#008fb6a1}$SEP_RIGHT "
+              battery="$SEP_LEFT%{F#5D5D5D} %{F$BAT_FG}%{B$BAT_BG} ${bat:4}%{B#008fb6a1}$SEP_RIGHT "
               battery="${battery::-1}"
           elif [[ ${eth} == "down " ]] && [[ ${wlan} != "down " ]]; then # wifi only
-              net="$SEP_LEFT%{F#5D5D5D} W: %{F$NET_FG}%{B$NET_BG}${wlan}%{B#008fb6a1}$SEP_RIGHT "
+              net="$SEP_LEFT%{F#5D5D5D}  %{F$NET_FG}%{B$NET_BG}${wlan}%{B#008fb6a1}$SEP_RIGHT "
 
               # battery
-              battery="$SEP_LEFT%{F#5D5D5D} B:%{F$BAT_FG}%{B$BAT_BG} ${bat:4}%{B#008fb6a1}$SEP_RIGHT "
+              battery="$SEP_LEFT%{F#5D5D5D} %{F$BAT_FG}%{B$BAT_BG} ${bat:4}%{B#008fb6a1}$SEP_RIGHT "
               battery="${battery::-1}"
           elif [[ ${eth} != "down " ]] && [[ ${wlan} == "down " ]]; then # eth only
-              net="$SEP_LEFT%{F#5D5D5D} E: %{F$NET_FG}%{B$NET_BG}${eth}%{B#008fb6a1}$SEP_RIGHT"
+              net="$SEP_LEFT%{F#5D5D5D}  %{F$NET_FG}%{B$NET_BG}${eth}%{B#008fb6a1}$SEP_RIGHT"
           
               # battery
-              battery="$SEP_LEFT%{F#5D5D5D} B:%{F$BAT_FG}%{B$BAT_BG} ${bat:4}%{B#008fb6a1}$SEP_RIGHT "
+              battery="$SEP_LEFT%{F#5D5D5D} %{F$BAT_FG}%{B$BAT_BG} ${bat:4}%{B#008fb6a1}$SEP_RIGHT "
               battery="${battery::-1}"
           fi
           sys_infos="${vol} ${net}${battery} ${time}%{B${BG}}"
           ;;
 		T*)
 			# xtitle output
-			title="%{F$COLOR_TITLE_FG}%{B$COLOR_TITLE_BG} ${line:1:50} %{B-}%{F-}"
+			title="${line:1} "
 			;;
 		W*)
 			# bspwm internal state

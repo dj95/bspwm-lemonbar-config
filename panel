@@ -11,7 +11,8 @@ trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 mkfifo "$PANEL_FIFO"
 
 bspc control --subscribe > "$PANEL_FIFO" &
-xtitle -sf 'T%s' > "$PANEL_FIFO" &
+#xtitle -sf 'T%s' > "$PANEL_FIFO" &
+/home/neo/.config/bspwm/panel/title.sh > "$PANEL_FIFO" &
 /opt/i3status/i3status --config /home/neo/.i3/panel/i3status.conf > "$PANEL_FIFO" &
 
 . panel_colors
